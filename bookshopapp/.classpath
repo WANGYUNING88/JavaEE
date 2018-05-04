@@ -8,9 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/Program Files/apache-tomcat-9.0.0.M19/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.8.2.jar"/>
-	<classpathentry kind="lib" path="E:/Java工具/apache-tomcat-8.5.20/lib/catalina.jar"/>
 	<classpathentry kind="lib" path="E:/Java工具/apache-tomcat-8.5.20/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
