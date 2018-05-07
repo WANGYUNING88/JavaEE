@@ -1,6 +1,11 @@
 package bookshopapp.action.user;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Calendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,20 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import bookshopapp.bean.User;
-import bookshopapp.dao.UserDao;
+import bookshopapp.common.DateStringUtil;
 
 /**
- * Servlet implementation class UserLoginServlet
+ * Servlet implementation class UploadFile
  */
-@WebServlet("/UserLoginServlet")
-public class UserLoginServlet extends HttpServlet {
+@WebServlet("/UploadFile")
+public class UploadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLoginServlet() {
+    public UploadFile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +36,24 @@ public class UserLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setCharacterEncoding("utf-8");
-		String name = request.getParameter("user_name");
-		String password = request.getParameter("user_password");
-		User user = null;
-		UserDao userDao = new UserDao();
-		user = userDao.Login(name, password);
-		Gson gson = new Gson();
-		String userStr = gson.toJson(user);
-		System.out.println(userStr);
-		response.getWriter().append(userStr);
+		InputStream is = request.getInputStream();
+		Calendar now = Calendar.getInstance();
+		String fileName = DateStringUtil.getTimeString(now)+".jpg";
+		File file= new File(getServletContext().getRealPath("upload/")+fileName);
+		FileOutputStream fos = new FileOutputStream(file);
 		
+		int len;
+		byte[] buffer = new byte[1024];
+		while((len = is.read(buffer)) != -1){
+			fos.write(buffer, 0, len);
+		}
+		
+		is.close();
+		fos.close();
+		Gson gson = new Gson();
+		String uploadGson = gson.toJson(fileName);
+		System.out.println(fileName);
+		response.getWriter().append(uploadGson);
 	}
 
 	/**

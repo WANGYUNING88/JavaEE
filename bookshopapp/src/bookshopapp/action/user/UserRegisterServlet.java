@@ -58,7 +58,7 @@ public class UserRegisterServlet extends HttpServlet {
 		User user = gson.fromJson(userStr, User.class);
 		boolean result = false;
 		UserDao userDao = new UserDao();
-		result = userDao.Register(user.getUserName(),user.getPassword());
+		result = userDao.Register(user.getUserName(),user.getPassword(),user.getUserImg());
 		System.out.println(result);
 	
 		if(result == true) {

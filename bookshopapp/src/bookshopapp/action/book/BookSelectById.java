@@ -1,4 +1,4 @@
-package bookshopapp.action.user;
+package bookshopapp.action.book;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import bookshopapp.bean.User;
-import bookshopapp.dao.UserDao;
+import bookshopapp.bean.Book;
+import bookshopapp.dao.BookDao;
 
 /**
- * Servlet implementation class UserLoginServlet
+ * Servlet implementation class BookSelectById
  */
-@WebServlet("/UserLoginServlet")
-public class UserLoginServlet extends HttpServlet {
+@WebServlet("/BookSelectById")
+public class BookSelectById extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLoginServlet() {
+    public BookSelectById() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +33,13 @@ public class UserLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("utf-8");
-		String name = request.getParameter("user_name");
-		String password = request.getParameter("user_password");
-		User user = null;
-		UserDao userDao = new UserDao();
-		user = userDao.Login(name, password);
+		int bookId = Integer.parseInt(request.getParameter("bookId"));
+		BookDao bookDao = new BookDao();
+		Book book = bookDao.selcetBookById(bookId);
 		Gson gson = new Gson();
-		String userStr = gson.toJson(user);
-		System.out.println(userStr);
-		response.getWriter().append(userStr);
+		String bookStr = gson.toJson(book);
+		System.out.println(bookStr);
+		response.getWriter().append(bookStr);
 		
 	}
 

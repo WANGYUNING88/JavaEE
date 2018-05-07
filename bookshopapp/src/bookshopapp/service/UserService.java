@@ -7,8 +7,8 @@ public class UserService {
 	
 	private UserDao userDao = new UserDao();;
 	
-	public boolean Register(String user_name ,String user_password) {
-		boolean result = userDao.Register(user_name ,user_password);
+	public boolean Register(String user_name ,String user_password,String user_img) {
+		boolean result = userDao.Register(user_name ,user_password,user_img);
 		return result;	
 	}
 	

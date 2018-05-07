@@ -30,8 +30,8 @@ public class UserDao {
 				usered = new User(
 						rs.getInt("userId"),
 						rs.getString("userName"),
-						rs.getString("userPassword")
-					);
+						rs.getString("userPassword"),
+						rs.getString("userImg"));
 				
 			}
 		} catch (SQLException e) {
@@ -53,14 +53,14 @@ public class UserDao {
 		
 	}
 	//user×¢²á
-	public boolean Register(String user_name ,String user_password) {
+	public boolean Register(String user_name ,String user_password,String user_img) {
 		
-		sql = "insert into user(userName,userPassword) values(?,?)";
+		sql = "insert into user(userName,userPassword,userImg) values(?,?,?)";
 		try {
 			ps = connection.prepareStatement(sql);
 			ps.setString(1, user_name);
 			ps.setString(2, user_password);
-	
+			ps.setString(3, user_img);
 			ps.execute();
 			
 			return true;

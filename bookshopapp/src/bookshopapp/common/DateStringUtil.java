@@ -12,7 +12,7 @@ public class DateStringUtil {
         }
         return (sb.length() == 0) ? (str) : (sb.toString() + str);
     }
-	private static String getTimeString(Calendar calendar) {      
+	public static String getTimeString(Calendar calendar) {      
         StringBuffer sb = new StringBuffer();
         sb.append(String.valueOf(calendar.get(Calendar.YEAR)))     
           .append(valueOfString(String.valueOf(calendar.get(Calendar.MONTH) + 1),2))

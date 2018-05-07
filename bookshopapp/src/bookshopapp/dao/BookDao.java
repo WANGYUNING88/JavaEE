@@ -12,13 +12,14 @@ import bookshopapp.bean.Book;
 import bookshopapp.common.DbConnection;
 
 public class BookDao {
-	private Connection connection = DbConnection.getConnection();
-	private PreparedStatement ps =null;
-	private ResultSet rs=null;
-	private String sql;
-	
+ 
 	//查询全部
 	public List<Book> selectAll(){
+		Connection connection = DbConnection.getConnection();
+		 PreparedStatement ps =null;
+		ResultSet rs =null ;
+		 String sql;
+		
 		List<Book> bookList = new ArrayList<Book>();
 		try {
 			if(connection.isClosed()) {
@@ -43,16 +44,14 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-		
-//			try {
-//				rs.close();
-//				ps.close();
-//				connection.close();			
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		
+			try {
+				rs.close();
+				ps.close();
+				connection.close();			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 		
 			
 		}
@@ -62,7 +61,11 @@ public class BookDao {
 	}
 	//根据id
 	public Book selcetBookById(int bookId) {
-	
+		Connection connection = DbConnection.getConnection();
+		 PreparedStatement ps =null;
+		ResultSet rs = null ;
+		 String sql;
+		
 		Book book = new Book();
 		sql =  "select * from book where bookId = ?";
 		try {
