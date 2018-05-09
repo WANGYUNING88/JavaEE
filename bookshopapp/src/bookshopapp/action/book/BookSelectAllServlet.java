@@ -22,7 +22,7 @@ import bookshopapp.dao.BookDao;
 @WebServlet("/BookSelectAllServlet")
 public class BookSelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private BookDao bookDao = new BookDao();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,7 +38,7 @@ public class BookSelectAllServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("utf-8");
 		List<Book> bookList = new ArrayList<Book>();
-	
+		BookDao bookDao = new BookDao();
 		bookList = bookDao.selectAll();
 		
 		Gson gson = new Gson();

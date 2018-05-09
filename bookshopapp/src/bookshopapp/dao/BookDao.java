@@ -22,9 +22,9 @@ public class BookDao {
 		
 		List<Book> bookList = new ArrayList<Book>();
 		try {
-			if(connection.isClosed()) {
-				connection = DbConnection.getConnection();
-			}
+
+			connection = DbConnection.getConnection();
+		
 			
 			sql = "select * from book";
 			ps = connection.prepareStatement(sql);
@@ -44,15 +44,16 @@ public class BookDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			try {
-				rs.close();
-				ps.close();
-				connection.close();			
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
-		
+			if(rs!=null&&ps!=null&&connection!=null){
+				try {
+					rs.close();
+					ps.close();
+					connection.close();			
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		
+			}
 			
 		}
 		
